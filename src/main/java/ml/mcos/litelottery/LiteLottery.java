@@ -27,7 +27,7 @@ public class LiteLottery extends JavaPlugin {
             getServer().getConsoleSender().sendMessage("[LiteLottery] using economy system: §3" + economy.getName());
             getServer().getScheduler().runTaskTimerAsynchronously(this, () -> {
                 Calendar cal = Calendar.getInstance();
-                if (lottery.checkTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE))) {
+                if (lottery.checkTime(cal)) {
                     lottery.tryRunLottery();
                 }
                 if (cal.get(Calendar.DAY_OF_MONTH) != day) {

@@ -8,10 +8,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Config {
     public static int lotteryHour;
     public static int lotteryMinute;
+    public static List<Integer> lotteryWeekDays;
     public static boolean notice;
     public static int maxNumber;
     public static double initialPrizePool;
@@ -57,6 +59,7 @@ public class Config {
             lotteryMinute = 30;
             plugin.getLogger().info("已将开奖时间设置为: 20:30");
         }
+        lotteryWeekDays = config.getIntegerList("lotteryWeekDays");
         notice = config.getBoolean("notice", true);
         maxNumber = config.getInt("maxNumber");
         if (maxNumber < 5) {

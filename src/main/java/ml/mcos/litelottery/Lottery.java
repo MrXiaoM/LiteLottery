@@ -13,13 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Lottery {
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -422,7 +416,12 @@ public class Lottery {
         }
     }
 
-    public boolean checkTime(int hour, int minute) {
+    public boolean checkTime(Calendar cal) {
+        int week = cal.get(Calendar.DAY_OF_WEEK);
+        if (!Config.lotteryWeekDays.contains(week)) return false;
+
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
         if (hour == Config.lotteryHour && minute == Config.lotteryMinute) {
             return true;
         } else if (Config.notice && !notice) {
